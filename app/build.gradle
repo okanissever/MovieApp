@@ -15,7 +15,10 @@ android {
         targetSdk 33
         versionCode 1
         versionName "1.0"
-        buildConfigField "String", "API_KEY", "\"b298ab48b01d8065cf8c9cecb063fcf2\""
+
+        def apiKey = rootProject.file("local.properties").readLines().find { it.startsWith("apiKey=") }.substring(7)
+        buildConfigField "String", "API_KEY", "\"${apiKey}\""
+
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
